@@ -1,0 +1,27 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}'Mon agence {% endblock %}
+
+{% block body%}
+<div class="jumbotron text-center">
+<h3> Agence immobilière</h3>
+<p> paragraphe à remplir </p>
+</div>
+<div class="container">
+   <h2> les derniers biens </h2> 
+   <div class="row flex">
+   {% for property in properties %}
+   <div="col-3>
+    <div class="card">
+    <div class="card-body">
+    <h5 div class="card-title">
+    <a href="#">{{property.title}}</a>
+    </h5>
+    <p class="card-text">{{property.city}} {{property.postalCode}}</p>
+        <p class="text.primary">{{property.price}}</p>
+    </div>
+    </div>
+    </div>
+   {% endfor %}
+</div>
+{% endblock %}

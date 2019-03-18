@@ -42,12 +42,12 @@ class PropertyRepository extends ServiceEntityRepository
     public function findLatest() : array
     {
         return $this->createQueryBuilder('p')
-         //   ->where('p.sold = false')
+            ->where('p.sold = false')
             ->setMaxResults(4)
             ->getQuery()
-            ->getResult(); 
+            ->getResult();
 
-    } 
+} 
 
   /*  public function findLatest() : array
     {

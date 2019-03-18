@@ -13,7 +13,7 @@ class HomeController extends AbstractController {
      * @var twig\Environment
      */
 
-       private $twig;
+    //   private $twig;
   /*  public function __construct(Environment $twig)
     {
         $this->twig = $twig;

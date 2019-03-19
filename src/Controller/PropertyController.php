@@ -37,15 +37,15 @@ class PropertyController extends AbstractController
     {
         // creation d'un enregistrement
       /*  $property = new Property();
-        $property->setTitle('mon premier bien')
-        ->setPrice(200000)
-        ->setRooms(4)
-        ->setBedrooms(3)
-        ->setDescription('une petite description')
-        ->setSurface(60)
-        ->setFloor(4)
+        $property->setTitle('mon autre bien')
+        ->setPrice(100000)
+        ->setRooms(1)
+        ->setBedrooms(30)
+        ->setDescription('studio')
+        ->setSurface(20)
+        ->setFloor(3)
         ->setHeat(1)
-        ->setCity('Montpelier')
+        ->setCity('Montpellier')
         ->setAddress('15 boulevard Gambetta')
         ->setPostalCode('34000');
         $em =  $this->getDoctrine()->getManager();   

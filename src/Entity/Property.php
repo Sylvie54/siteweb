@@ -183,13 +183,10 @@ class Property
         return $this;
     }
 
-<<<<<<< HEAD
-=======
     public function getFormattedPrice(): string
     {
         return number_format($this->price,0,'', ' ');        
     }
->>>>>>> c0a9977fb10eeeb7633759c5d4b26e606d81980c
     public function getHeat(): ?int
     {
         return $this->heat;

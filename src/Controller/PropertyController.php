@@ -36,7 +36,7 @@ class PropertyController extends AbstractController
     public function index() : Response
     {
         // creation d'un enregistrement
-        $property = new Property();
+      /*  $property = new Property();
         $property->setTitle('mon autre bien')
         ->setPrice(100000)
         ->setRooms(1)
@@ -50,7 +50,7 @@ class PropertyController extends AbstractController
         ->setPostalCode('34000');
         $em =  $this->getDoctrine()->getManager();   
         $em->persist($property);
-        $em->flush(); 
+        $em->flush(); */
 
       /*  $repository = $this->getDoctrine()->getRepository(Property::class);
         dump($repository); */

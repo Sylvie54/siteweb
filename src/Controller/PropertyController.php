@@ -36,18 +36,18 @@ class PropertyController extends AbstractController
     public function index() : Response
     {
         // creation d'un enregistrement
-      /*  $property = new Property();
-        $property->setTitle('mon premier bien')
-        ->setPrice(200000)
-        ->setRooms(4)
-        ->setBedrooms(3)
-        ->setDescription('une petite description')
-        ->setSurface(60)
-        ->setFloor(4)
+       /* $property = new Property();
+        $property->setTitle('un petit studio')
+        ->setPrice(80000)
+        ->setRooms(1)
+        ->setBedrooms(0)
+        ->setDescription('agréable et calme')
+        ->setSurface(20)
+        ->setFloor(2)
         ->setHeat(1)
-        ->setCity('Montpelier')
-        ->setAddress('15 boulevard Gambetta')
-        ->setPostalCode('34000');
+        ->setCity('Nancy')
+        ->setAddress('15 boulevard Petain')
+        ->setPostalCode('54000');
         $em =  $this->getDoctrine()->getManager();   
         $em->persist($property);
         $em->flush(); */
@@ -78,5 +78,28 @@ class PropertyController extends AbstractController
            'current_menu' => 'properties'
        ])); */
     }
+    /**
+     * @return Response
+     * @param Property property
+     * @route("/biens/{slug}-{id}", name="property.show", requirements={"slug": "[a-z0-9\-]*"})
+     */
 
+
+   // public function show($slug , $id): Response
+    public function show(Property $property, string $slug): Response
+    {
+        if ($property->getSlug() !== $slug)
+        {
+           return $this->redirectToRoute('property.show', [
+              'id' => $property->getId(),
+              'slug' => $property->getSlug()
+            ], 301);
+        }
+
+    //  $property = $this->repository->find($id);
+      return $this->render('property/show.html.twig', [
+        'property' => $property,
+        'current_menu' => 'properties'
+        ]);
+    }
 }

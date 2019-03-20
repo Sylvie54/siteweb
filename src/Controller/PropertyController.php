@@ -35,21 +35,6 @@ class PropertyController extends AbstractController
 
     public function index() : Response
     {
-<<<<<<< HEAD
-        // creation d'un enregistrement
-       /* $property = new Property();
-        $property->setTitle('un petit studio')
-        ->setPrice(80000)
-        ->setRooms(1)
-        ->setBedrooms(0)
-        ->setDescription('agréable et calme')
-        ->setSurface(20)
-        ->setFloor(2)
-        ->setHeat(1)
-        ->setCity('Nancy')
-        ->setAddress('15 boulevard Petain')
-        ->setPostalCode('54000');
-=======
        
      // creation d'un enregistrement
       /* $property = new Property();
@@ -64,7 +49,6 @@ class PropertyController extends AbstractController
         ->setCity('Montpellier')
         ->setAddress('15 boulevard Gambetta')
         ->setPostalCode('34000');
->>>>>>> 406f6d3229fb94f020f2d91f8031daf3bb5d6fa0
         $em =  $this->getDoctrine()->getManager();   
         $em->persist($property);
         $em->flush(); */
@@ -101,7 +85,6 @@ class PropertyController extends AbstractController
      * @route("/biens/{slug}-{id}", name="property.show", requirements={"slug": "[a-z0-9\-]*"})
      */
 
-<<<<<<< HEAD
 
    // public function show($slug , $id): Response
     public function show(Property $property, string $slug): Response
@@ -121,6 +104,3 @@ class PropertyController extends AbstractController
         ]);
     }
 }
-=======
-}
->>>>>>> 406f6d3229fb94f020f2d91f8031daf3bb5d6fa0

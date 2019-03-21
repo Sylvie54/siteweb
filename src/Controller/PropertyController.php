@@ -35,7 +35,6 @@ class PropertyController extends AbstractController
 
     public function index() : Response
     {
-<<<<<<< HEAD
        
      // creation d'un enregistrement
       /* $property = new Property();
@@ -50,21 +49,6 @@ class PropertyController extends AbstractController
         ->setCity('Montpellier')
         ->setAddress('15 boulevard Gambetta')
         ->setPostalCode('34000');
-=======
-        // creation d'un enregistrement
-       /* $property = new Property();
-        $property->setTitle('un petit studio')
-        ->setPrice(80000)
-        ->setRooms(1)
-        ->setBedrooms(0)
-        ->setDescription('agréable et calme')
-        ->setSurface(20)
-        ->setFloor(2)
-        ->setHeat(1)
-        ->setCity('Nancy')
-        ->setAddress('15 boulevard Petain')
-        ->setPostalCode('54000');
->>>>>>> 19a07836eac2aff2d91b8a4dfa6d5f8d2e684d9d
         $em =  $this->getDoctrine()->getManager();   
         $em->persist($property);
         $em->flush(); */

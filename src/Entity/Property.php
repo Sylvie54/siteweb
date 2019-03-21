@@ -116,14 +116,14 @@ class Property
       return $slugify = (new Slugify())->slugify($this->title); 
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
         return $this->description;
     }
 
-    public function setDescription(?string $descrition): self
+    public function setDescription(string $description): self
     {
-        $this->descrition = $descrition;
+        $this->description = $description;
 
         return $this;
     }

@@ -115,8 +115,10 @@ class Property
     {
       return $slugify = (new Slugify())->slugify($this->title); 
     }
-
-    public function getDescription(): string
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
     {
         return $this->description;
     }

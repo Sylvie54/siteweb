@@ -21,6 +21,7 @@
         <form method="post" action="{{ path('admin.property.delete', {id: property.id}) }}" style="display: inline-block"
         onsubmit="return confirm('Etes vous sur ?')">
         <input type="hidden" name="_method" value="DELETE">
+        {# création d'un token si l'utilisateur essaye d'injecter des données #}
         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ property.id) }}">
         <button class="btn btn-danger">Supprimer</button>
         </form>

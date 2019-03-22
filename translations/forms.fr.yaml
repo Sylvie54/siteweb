@@ -1,0 +1,11 @@
+City: Ville
+Title: Titre
+Price: Prix
+Rooms: Nombre de pièces
+Bedrooms: Nombre de chambres
+Heat: Type de chauffage
+Floor: Etage
+Address: Rue
+postal_code: Code Postal
+Sold: Vendu
+Description: La description

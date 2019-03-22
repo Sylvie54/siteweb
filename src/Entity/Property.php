@@ -4,9 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Cocur\Slugify\Slugify;
+// pour les règles de validation : regex, avec des asserts
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+//UniqueEntity : empêche de créer 2 biens avec le même title 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
+ * @UniqueEntity("title")
  */
 class Property
 {
@@ -36,12 +41,13 @@ class Property
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(min=10,max=400)
      */
     private $surface;
 
     /**
      * @ORM\Column(type="integer")
-     */
+         */
     private $rooms;
 
     /**
@@ -76,6 +82,7 @@ class Property
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/^[0-9]{5}$/")
      */
     private $postal_code;
 

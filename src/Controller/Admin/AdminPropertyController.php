@@ -20,7 +20,7 @@ use App\Form\PropertyType;
 // utilisation ObjectManager pour la persistance des données
 use Doctrine\Common\Persistence\ObjectManager;
 
-// la lcasse hérite de la classe mère AbstractController pouvant utiliser Response et Request 
+// la classe hérite de la classe mère AbstractController pouvant utiliser Response et Request 
 class AdminPropertyController extends AbstractController {
 
     // attribut faisant le lien entre la classe et les requêtes
@@ -29,6 +29,7 @@ class AdminPropertyController extends AbstractController {
      */
     private $repository;
     /**
+     * @param PropertyRepository $repository
      * @var ObjectManager
      */
     private $em;
@@ -44,7 +45,6 @@ class AdminPropertyController extends AbstractController {
     // route "web" : /admin , nom du template : admin/property/index.html.twig 
     /**
      * @route("/admin", name="admin.property.index")
-     * @return \Symfony\component\HttpFoudation\Response
      */
 
     public function index()
@@ -75,7 +75,7 @@ class AdminPropertyController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) {
             $this->em->persist($property);
             $this->em->flush();
-
+            $this->addFlash('success', 'bien modifié crée avec succès');    
             // on redirige vers la page admin/index
             return $this->redirectToRoute('admin.property.index');
         }
@@ -105,6 +105,7 @@ class AdminPropertyController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->flush();
+            $this->addFlash('success', 'bien modifié avec succès');
             return $this->redirectToRoute('admin.property.index');
         }
 
@@ -113,6 +114,8 @@ class AdminPropertyController extends AbstractController {
             'form' =>$form->createView()
         ]);
     }
+
+    // on récupère l'objet Property à supprimer : $property
     /**
      * @route("/property/admin{id}", name="admin.property.delete", methods="DELETE")
      */
@@ -121,6 +124,7 @@ class AdminPropertyController extends AbstractController {
         {
         $this->em->remove($property);
         $this->em->flush();
+        $this->addFlash('success', 'bien supprimé avec succès');
         // pour les tests
         //return new Response('Suppression');
         }

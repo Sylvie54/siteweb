@@ -12,7 +12,9 @@ class Property
 {
     const HEAT = [
         0 => 'electrique',
-        1 => 'gaz' 
+        1 => 'gaz', 
+        2 => 'bois',
+        3 => 'géothermie'
     ];
 
     /**
@@ -92,7 +94,7 @@ class Property
         return $this->id;
     }
 
-    // constructeur
+    // constructeur. on initialise la date de création à la date du jour
     public function __CONSTRUCT()
     {
         $this->created_at = new \DateTime();
@@ -115,6 +117,7 @@ class Property
     {
       return $slugify = (new Slugify())->slugify($this->title); 
     }
+    // accepte une valeur strinf ou une valeur nulle
     /**
      * @return string|null
      */

@@ -5,7 +5,14 @@
 {% block body%}
 <div class="container mt-4">
 <h2>Gérer les biens</h2>
+
+{% for message in app.flashes('success') %}
+    <div class='alert alert-success'>
+        {{ message }}
+    </div>
+{% endfor %}
 <table class="table table-strped">
+
 <thead>
 <tr>
     <th>Titre</th>

@@ -12,11 +12,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 class PropertyController extends AbstractController
  {
      
-   /* private $twig;
-    public function __construct(Environment $twig)
-    {
-        $this->twig = $twig;
-    } */
+  
         private $repository;
         private $em;
 
@@ -36,7 +32,7 @@ class PropertyController extends AbstractController
     public function index() : Response
     {
        
-     // creation d'un enregistrement
+     // exemple de creation d'un enregistrement
       /* $property = new Property();
         $property->setTitle('mon autre bien')
         ->setPrice(100000)
@@ -53,10 +49,12 @@ class PropertyController extends AbstractController
         $em->persist($property);
         $em->flush(); */
 
-      /*  $repository = $this->getDoctrine()->getRepository(Property::class);
+      /* 
+      // affichage en Response de la property sélectionnée
+      $repository = $this->getDoctrine()->getRepository(Property::class);
         dump($repository); */
 
-        // récupération du premierenregistrement de la table
+        // récupération du premier enregistrement de la table
         // $property = $this->repository->find(1);
 
         // tous les enregistrements
@@ -67,6 +65,7 @@ class PropertyController extends AbstractController
 
         // on utilise la fonction que l'on a crée dans le PropertyRepository permettant de voir les biens encore visibles
      /*   $property = $this->repository->findAllVisible();
+     // on met le sold à true (bien vendu) et on mat à jour
         $property[0]->setSold(true);
         $this->em->flush();    
        // dump($property); */

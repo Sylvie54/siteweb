@@ -10,11 +10,13 @@
 <div class="container">
    <h2> les derniers biens </h2> 
    <div class="row flex">
+   {# pour chaque property dans le tableau properties, on affiche certaines données#}
    {% for property in properties %}
    <div class="col-md-4">
     <div class="card">
     <div class="card-body">
     <h5 div class="card-title">
+    {# lien vers le templage twig property.show #}
     <a href="{{ path('property.show' , {id: property.id, slug: property.slug }) }}">{{property.title}}</a>
     </h5>
     <p class="card-text">{{property.city}} {{property.postalCode}}</p>

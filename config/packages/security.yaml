@@ -43,4 +43,6 @@ security:
     # encodage du mot de passe. plaintext : pas d'encodage   
     encoders:    
      #   Symfony\Component\Security\Core\User\User: plaintext
-        App\Entity\User: plaintext
+        App\Entity\User: 
+            algorithm: bcrypt
+            cost: 12

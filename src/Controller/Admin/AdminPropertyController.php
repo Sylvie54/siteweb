@@ -17,6 +17,7 @@ use App\Entity\Property;
 // utiliser le formulaire auto_construit de la classe Property avec la console
 // make:form nomform (doit toujours finir par Type ex: propertyType)
 use App\Form\PropertyType;
+use App\Entity\Option;
 // utilisation ObjectManager pour la persistance des données
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -95,6 +96,10 @@ class AdminPropertyController extends AbstractController {
      */
     public function edit(Property $property, Request $request)
     {
+
+         //   $option = new Option();
+         //   $property->addOption($option);
+
         // pour utiliser le formulaire dans le controller
         // on passe l'objet property en paramètre au formulaire
         $form = $this->createForm(PropertyType::class, $property);

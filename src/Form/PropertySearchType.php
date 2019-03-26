@@ -3,18 +3,20 @@
 namespace App\Form;
 
 use App\Entity\PropertySearch;
+use App\Entity\Option;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class PropertySearchType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
         $builder
             
             
@@ -32,6 +34,15 @@ class PropertySearchType extends AbstractType
                 'placeHolder' => 'Budget maximal'
             ]
         ])
+
+        ->add('options', EntityType::class, [
+            'class' => Option::class,
+                'required' => false,
+                'label' => false,
+                'choice_label' => 'name',
+                'multiple' => true
+        ])      
+
              /*  ->add('submit', SubmitType::class, [
                     'label' => 'Rechercher'    
                 ]) */

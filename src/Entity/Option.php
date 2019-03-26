@@ -54,7 +54,7 @@ class Option
     /**
      * @return Collection|Property[]
      */
-    public function getProperties(): Collection
+    public function getProperties(): ArrayCollection
     {
         return $this->properties;
     }

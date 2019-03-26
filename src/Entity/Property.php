@@ -9,11 +9,16 @@ use Cocur\Slugify\Slugify;
 // pour les règles de validation : regex, avec des asserts
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 //UniqueEntity : empêche de créer 2 biens avec le même title 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
  * @UniqueEntity("title")
+ * @Vich\Uploadable
  */
 class Property
 {
@@ -31,6 +36,18 @@ class Property
      */
     private $id;
 
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $filename;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="property_image", fileNameProperty="filename")
+     */
+    private $imageFile;
+    
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -102,6 +119,12 @@ class Property
      * @ORM\ManyToMany(targetEntity="App\Entity\Option", inversedBy="properties")
      */
     private $options;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
+     */
+    private $updated_at;
 
     public function __construct()
     {
@@ -321,4 +344,53 @@ class Property
 
         return $this;
     }
+    /**
+     * @return null|string
+     */
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+    /**
+     * @param null|string $filename
+     * @return Property
+     */
+    public function setFilename(?string $filename): Property
+    {
+        $this->filename = $filename;
+        return $this;
+    }
+    /**
+     * @return null|string
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+    /**
+     * @param null|string $imageFile
+     * @return Property
+     */
+    public function setImageFile(?string $imageFile): Property
+    {
+        $this->imageFile = $imageFile;
+        
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updated_at = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updated_at;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updated_at): self
+    {
+        $this->updated_at = $updated_at;
+
+        return $this;
+    }
+
 }

@@ -7,7 +7,14 @@ liip_imagine:
                 thumbnail:
                   size:          [360, 230]
                   mode:          outbound
-#                  allow_upscale: true
+      
+    medium:
+      quality: 75
+      filters:
+        # scale and square the image to the given dimensions
+                thumbnail:
+                  size:          [800, 530]
+                  mode:          outbound       
 
 
 #liip_imagine:

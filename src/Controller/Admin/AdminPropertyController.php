@@ -20,6 +20,10 @@ use App\Form\PropertyType;
 use App\Entity\Option;
 // utilisation ObjectManager pour la persistance des données
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+// pour manipuler des informations dans le cache
+//use Liip\ImagineBundle\Imagine\Cache\CacheManager;
+//use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 // la classe hérite de la classe mère AbstractController pouvant utiliser Response et Request 
 class AdminPropertyController extends AbstractController {
@@ -94,9 +98,10 @@ class AdminPropertyController extends AbstractController {
      * @route("/property/admin{id}", name="admin.property.edit", methods="GET|POST")
      * 
      */
+    //public function edit(Property $property, Request $request, CacheManager $cacheManager, UploaderHelper $helper)
     public function edit(Property $property, Request $request)
     {
-
+    
          //   $option = new Option();
          //   $property->addOption($option);
 
@@ -108,6 +113,11 @@ class AdminPropertyController extends AbstractController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /* si on a une image de uploadedFile, c'est à dire qu'elle a été uploadée, on doit donc la supprimer du cache
+            if ($property->getImageFile() instanceof UploadedFile)
+            {
+                $cacheManager->remove($helper->asset($property, 'imageFile'));    
+            }*/
 
             $this->em->flush();
             $this->addFlash('success', 'bien modifié avec succès');

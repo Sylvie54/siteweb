@@ -12,6 +12,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+//use Symfony\Component\Validator\Constraints\Image;
 
 
 //UniqueEntity : empêche de créer 2 biens avec le même title 
@@ -45,6 +46,7 @@ class Property
     /**
      * @var File|null
      * @Vich\UploadableField(mapping="property_image", fileNameProperty="filename")
+     * @Assert\Image(mimeTypes="image/jpeg")
      */
     private $imageFile;
     
@@ -361,7 +363,7 @@ class Property
         return $this;
     }
     /**
-     * @return null|string
+     * @return null|File
      */
     public function getImageFile(): ?File
     {
@@ -371,7 +373,7 @@ class Property
      * @param null|string $imageFile
      * @return Property
      */
-    public function setImageFile(?string $imageFile): Property
+    public function setImageFile(?File $imageFile): Property
     {
         $this->imageFile = $imageFile;
         

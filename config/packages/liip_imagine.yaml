@@ -13,7 +13,7 @@ liip_imagine:
       filters:
         # scale and square the image to the given dimensions
                 thumbnail:
-                  size:          [800, 530]
+                  size:          [600, 400]
                   mode:          outbound       
 
 

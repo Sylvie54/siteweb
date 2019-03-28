@@ -7,11 +7,15 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Twig\Environment;
 use App\Entity\Property;
+use App\Entity\Contact;
 use App\Repository\PropertyRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use  Knp\Component\Pager\PaginatorInterface;
 use App\Entity\PropertySearch;
 use App\Form\PropertySearchType;
+use App\Form\ContactType;
+use App\Notification\ContactNotification;
+
 
 
 class PropertyController extends AbstractController
@@ -104,20 +108,42 @@ class PropertyController extends AbstractController
 
 
    // public function show($slug , $id): Response
-    public function show(Property $property, string $slug): Response
+    public function show(Property $property, string $slug, Request $request, ContactNotification $notification): Response
     {
+      
+
         if ($property->getSlug() !== $slug)
         {
            return $this->redirectToRoute('property.show', [
               'id' => $property->getId(),
               'slug' => $property->getSlug()
+              // redirection suite à un probleme : 301
             ], 301);
         }
+
+        $contact = new Contact();
+        $contact->setProperty($property);
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+          // gestion de la notification avec la classe ContactNotification, méthode notify
+          $notification->notify($contact);
+          $this->addFlash('success', 'voter email a bien été envoyé');
+          /* pour test
+          return $this->redirectToRoute('property.show', [
+            'id' => $property->getId(),
+            'slug' => $property->getSlug()
+          ]); */
+        }
+
 
     //  $property = $this->repository->find($id);
       return $this->render('property/show.html.twig', [
         'property' => $property,
-        'current_menu' => 'properties'
+        'current_menu' => 'properties',
+        'form' => $form->createView()
         ]);
     }
 }

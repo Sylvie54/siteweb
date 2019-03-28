@@ -130,12 +130,12 @@ class PropertyController extends AbstractController
         {
           // gestion de la notification avec la classe ContactNotification, méthode notify
           $notification->notify($contact);
-          $this->addFlash('success', 'voter email a bien été envoyé');
-          /* pour test
+          $this->addFlash('success', 'votre email a bien été envoyé');
+           
           return $this->redirectToRoute('property.show', [
             'id' => $property->getId(),
             'slug' => $property->getSlug()
-          ]); */
+          ]); 
         }
 
 
